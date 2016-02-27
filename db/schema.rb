@@ -14,27 +14,27 @@
 ActiveRecord::Schema.define(version: 20150530164807) do
 
   create_table "banks", force: :cascade do |t|
-    t.string   "bank_key"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "bank_key",    limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "cat_key"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "cat_key",     limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "movements", force: :cascade do |t|
     t.date     "mov_date"
-    t.decimal  "amount",      precision: 9, scale: 2
-    t.string   "note"
-    t.integer  "category_id"
-    t.integer  "bank_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.decimal  "amount",                  precision: 9, scale: 2
+    t.string   "note",        limit: 255
+    t.integer  "category_id", limit: 4
+    t.integer  "bank_id",     limit: 4
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
 end
