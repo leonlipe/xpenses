@@ -7,9 +7,12 @@ jQuery ->
     oTable = $('#movements_datatable').dataTable
       
       bProcessing: true
+      bJQueryUI: true
+      sPaginationType: 'full_numbers'    
       bServerSide: true
       sAjaxSource: $('#states_datatable').data('source')
       columns: [null, null,null]
+      #sDom: '<""l>t<"F"fp>'
       oLanguage: 
         sLengthMenu: "Ver _MENU_ Filas"
         sSearch: ""

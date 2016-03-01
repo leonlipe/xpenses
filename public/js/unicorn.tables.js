@@ -6,11 +6,28 @@
 
 $(document).ready(function(){
 	
-	$('.data-table').dataTable({
-		"bJQueryUI": true,
-		"sPaginationType": "full_numbers",
-		"sDom": '<""l>t<"F"fp>'
-	});
+	// $('.data-table').dataTable({
+	// 	"bJQueryUI": true,
+	// 	"bProcessing": true,
+	// 	"bServerSide": true,
+	// 	"sAjaxSource": $('#states_datatable').data('source'),
+ //        "columns": [null, null,null],
+ //        "oLanguage":{ 
+ //          "sLengthMenu": "Ver _MENU_ Filas",
+ //          "sSearch": "",
+ //          "oPaginate": {
+ //            "sPrevious": "",
+ //            "sNext": "" 
+ //          }
+ //        },
+	// 	"sPaginationType": "full_numbers",
+	// 	"sDom": '<""l>t<"F"fp>'
+	// });
+
+
+     
+              
+
 	
 	var checkboxClass = 'icheckbox_flat-blue';
 	var radioClass = 'iradio_flat-blue';
