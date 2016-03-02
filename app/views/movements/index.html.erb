@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col-12">
-<a href="#myModal" data-toggle="modal" class="btn btn-primary">Modal dialog</a>
+<a href="#myModal" data-toggle="modal" class="btn btn-primary">Agregar movimiento</a>
 		<div id="myModal" class="modal fade">
 										<div class="modal-dialog">
 											<div class="modal-content">
@@ -10,38 +10,48 @@
 												</div>
 												<div class="modal-body">
 													
-													<form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate">
-					                                    <div class="form-group">
-					                                        <label class="control-label">Required Field</label>
-					                                        <div class="controls">
-					                                            <input type="text" class="form-control input-small" name="required" id="required">
+													<form class="form-horizontal" method="post" action="#" name="basic_validate" id="basic_validate" novalidate="novalidate" id="data" name="data">
+					                                   <div class="form-group">
+					                                        <label class="control-label">Fecha</label>
+					                                        <div class=" controls">
+					                                            <input type="text" data-date="12-02-2012" data-date-format="dd-mm-yyyy" value="<%=@fecha_actual.strftime("%d-%m-%Y")%>" class="datepicker form-control input-small" name="fecha" id="fecha"/>
 					                                        </div>
 					                                    </div>
 					                                    <div class="form-group">
-					                                        <label class="control-label">Email</label>
+					                                        <label class="control-label">Cantidad</label>
 					                                        <div class="controls">
-					                                            <input type="text" class="form-control input-small" name="email" id="email">
+					                                            <input type="text" class="form-control input-small" name="cantidad" id="cantidad">
 					                                        </div>
 					                                    </div>
 					                                    <div class="form-group">
-					                                        <label class="control-label">Date</label>
+					                                        <label class="control-label">Notas</label>
 					                                        <div class="controls">
-					                                            <input type="password" class="form-control input-small" name="date" id="date">
+					                                            <input type="text" class="form-control input-small" name="notas" id="notas">
 					                                        </div>
 					                                    </div>
+					                                    
+
 					                                    <div class="form-group">
-					                                        <label class="control-label">URL</label>
-					                                        <div class="controls">
-					                                            <input type="password" class="form-control input-small" name="url" id="url">
-					                                        </div>
-					                                    </div>
+															<label class="control-label">Cuenta</label>
+															<div class="controls">
+																<%= select_tag("account_id",  options_from_collection_for_select(Account.all, "id", "name") )%>
+															</div>
+														</div>	
+														<div class="form-group">
+															<label class="control-label">Tipo de movimiento</label>
+															<div class="controls">
+																<label><input type="radio" name="movement_kind" value="0" checked/> Cargo</label>
+																<label><input type="radio" name="movement_kind" value="1" /> Abono</label>
+															</div>
+														</div>
+
 					                                    <div class="form-actions">
-					                                        <input type="submit" value="Validate" class="btn btn-primary">
+					                                        <input type="submit" value="Agregar" class="btn btn-primary" id="addMovement" name"addMovement">
 					                                    </div>
 					                                </form>
 
 
-													
+
 												</div>
 											</div>
 										</div>
@@ -60,7 +70,7 @@
 		<h5>Dynamic table</h5>
 	</div>
 	<div class="widget-content nopadding">
-		
+
 	<table class="table table-striped table-bordered data-table table-hover" id="movements_datatable" data-source="<%= movements_url(format: "json") %>">
 		<thead>
 	  <tr>
@@ -79,3 +89,64 @@
 
 </div>
 </div>
+
+
+<style>
+.datepicker{z-index:1151 !important;}
+</style>
+
+<script type="text/javascript">
+$(function(){
+
+     // "sDom": '<""l>t<"F"fp>',
+
+
+	 var oTable = $('#movements_datatable').dataTable({
+      
+      "bProcessing": true,
+      "bJQueryUI": true,
+      "sPaginationType": 'full_numbers' ,   
+      "bServerSide": true,
+      "sAjaxSource": $('#states_datatable').data('source'),
+      "columns": [null, null,null],
+      "oLanguage": {
+        "sLengthMenu": "Ver _MENU_ Filas",
+        "sSearch": "",
+        "oPaginate": {
+          "sPrevious": "",
+          "sNext": "" 
+        }
+      }  
+      }     
+     );    	     
+
+
+
+	$('#addMovement').on('click',function(event){
+		console.log($('form').serializeObject());
+		console.log('Click en dialog');
+		$.ajax({
+			url: '/addmovement',
+			type: "POST",
+			data: {datos: JSON.stringify($('form').serializeObject())},
+			success: function(data){
+				$('#myModal').modal('hide');
+				oTable.fnDraw();
+			  console.log(data);
+
+			
+			}
+			}).error(function() {
+
+			})
+	       	.complete(function() { 
+	       		
+	       		       		
+	       	});
+
+		event.preventDefault();
+	});
+
+});
+
+</script>
