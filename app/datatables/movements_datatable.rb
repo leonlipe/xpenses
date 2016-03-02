@@ -22,6 +22,7 @@ class MovementsDatatable
         [
           movement.id,
           movement.mov_date,
+          movement.description,
           movement.amount,
           movement.print_kind    
         ]

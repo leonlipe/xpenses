@@ -17,6 +17,12 @@
 					                                            <input type="text" data-date="12-02-2012" data-date-format="dd-mm-yyyy" value="<%=@fecha_actual.strftime("%d-%m-%Y")%>" class="datepicker form-control input-small" name="fecha" id="fecha"/>
 					                                        </div>
 					                                    </div>
+					                                     <div class="form-group">
+					                                        <label class="control-label">Descripcion</label>
+					                                        <div class="controls">
+					                                            <input type="text" class="form-control input-small" name="descripcion" id="descripcion">
+					                                        </div>
+					                                    </div>
 					                                    <div class="form-group">
 					                                        <label class="control-label">Cantidad</label>
 					                                        <div class="controls">
@@ -76,6 +82,7 @@
 	  <tr>
 	    <th>ID</th>
 	    <th>Fecha</th>
+	    <th>Descripcion</th>
 	    <th>Cantidad</th>
 	    <th>Tipo</th>
 	  </tr>
@@ -109,7 +116,7 @@ $(function(){
       "sPaginationType": 'full_numbers' ,   
       "bServerSide": true,
       "sAjaxSource": $('#states_datatable').data('source'),
-      "columns": [null, null,null, null],
+      "columns": [null, null,null, null, null],
       "oLanguage": {
         "sLengthMenu": "Ver _MENU_ Filas",
         "sSearch": "",

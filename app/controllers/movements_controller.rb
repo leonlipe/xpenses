@@ -19,6 +19,7 @@ class MovementsController < ApplicationController
   	movement = Movement.new
   	movement.mov_date = Date.strptime(datos["fecha"], "%d-%m-%Y")
   	movement.amount = datos["cantidad"]
+  	movement.description = datos["descripcion"]
   	movement.note = datos["notas"]
   	movement.account_id = datos["account_id"]
   	movement.kind = datos["movement_kind"]
