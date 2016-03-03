@@ -8,7 +8,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'movements#index'
-  resources :movements
+  resources :movements do
+    collection { post :import }
+  end
+  resources :accounts  do
+    collection { post :import }
+  end
 
   post 'addmovement' => 'movements#addmovement'
   # Example of regular route:

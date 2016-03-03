@@ -31,4 +31,10 @@ class MovementsController < ApplicationController
 
 
   end
+
+  def import
+    
+    Movement.import(params[:file])
+    redirect_to root_url, notice: "Products imported."
+  end
 end

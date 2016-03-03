@@ -46,5 +46,7 @@ group :development, :test do
   gem 'spring'
   gem 'will_paginate'
 
+  gem 'roo'
+
 end
 
