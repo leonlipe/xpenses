@@ -7,15 +7,18 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'movements#index'
+  root 'dashboard#index'
   resources :movements do
     collection { post :import }
   end
   resources :accounts  do
     collection { post :import }
   end
+  resources :banks
 
   post 'addmovement' => 'movements#addmovement'
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

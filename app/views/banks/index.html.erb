@@ -1,25 +1,36 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Banks</h1>
 
-<table>
-  <thead>
+
+<div class="row">
+<div class="col-12">
+<div class="widget-box">
+  <div class="widget-title">
+    <span class="icon">
+      <i class="glyphicon glyphicon-th"></i>
+    </span>
+    <h5>Dynamic table</h5>
+  </div>
+  <div class="widget-content nopadding">
+
+  <table class="table table-striped table-bordered data-table table-hover" id="banks_datatable" data-source="<%= banks_url(format: "json") %>">
+    <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th>Clave</th>
+      <th>Descripcion</th>
     </tr>
   </thead>
-
   <tbody>
-    <% @banks.each do |bank| %>
-      <tr>
-        <td><%= link_to 'Show', bank %></td>
-        <td><%= link_to 'Edit', edit_bank_path(bank) %></td>
-        <td><%= link_to 'Destroy', bank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  
   </tbody>
-</table>
+  </table>
 
-<br>
+  </div>
+</div>
 
-<%= link_to 'New Bank', new_bank_path %>
+</div>
+
+
+
+
+

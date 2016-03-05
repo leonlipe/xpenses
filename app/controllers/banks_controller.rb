@@ -4,7 +4,12 @@ class BanksController < ApplicationController
   # GET /banks
   # GET /banks.json
   def index
-    @banks = Bank.all
+    @active_menu_item = 'banks'
+    @fecha_actual = DateTime.current
+    respond_to do |format|
+        format.html
+        format.json { render json: BanksDatatable.new(view_context) }
+    end
   end
 
   # GET /banks/1
@@ -69,6 +74,6 @@ class BanksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bank_params
-      params[:bank]
+      params.require(:bank).permit(:bank_key, :description)
     end
 end

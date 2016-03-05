@@ -3,6 +3,7 @@ class MovementsController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+   @active_menu_item = 'movements'
    @fecha_actual = DateTime.current
    respond_to do |format|
         format.html
