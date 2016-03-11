@@ -1,6 +1,13 @@
 class AccountsController < ApplicationController
 	def index
 
+		@active_menu_item = 'accounts'
+	    @fecha_actual = DateTime.current
+	    respond_to do |format|
+	        format.html
+	        format.json { render json: AccountsDatatable.new(view_context) }
+	    end
+
 	end
 
 

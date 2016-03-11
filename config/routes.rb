@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
+  get 'users/edit'
+
   resources :categories
+
 
   resources :banks
 
